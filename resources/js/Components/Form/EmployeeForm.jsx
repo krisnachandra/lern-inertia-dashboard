@@ -92,39 +92,34 @@ const EmployeeForm = ({ className = "", units }) => {
 
                 <div>
                     <InputLabel htmlFor="unit_id" value="Unit Name" />
-                    <Combobox value={selectedUnit} onChange={setSelectedUnit}>
-                        <Combobox.Input
-                            onChange={(e) => setData("unit_id", e.target.value)}
-                            displayValue={(data) => data.unit_name}
-                        />
-                        <Combobox.Options className="pl-3 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-                            {filteredData.map((value) => (
-                                <Combobox.Option key={value.id} value={value}>
-                                    {value.unit_name}
-                                </Combobox.Option>
-                            ))}
-                        </Combobox.Options>
-                    </Combobox>
+                    <select
+                        name="unit_id"
+                        onChange={(e) => setData("unit_id", e.target.value)}
+                    >
+                        {units.map((unit) => (
+                            <option key={unit.id} value={unit.id}>
+                                {unit.unit_name}
+                            </option>
+                        ))}
+                    </select>
                     <InputError className="mt-2" message={errors.unit_id} />
                 </div>
 
-                {/* <div>
-                    <InputLabel htmlFor="name" value="Name" />
-
-                    <TextInput
-                        id="name"
-                        className="mt-1 block w-full"
-                        value={data.name}
-                        onChange={(e) => {
-                            setData("name", e.target.value);
-                        }}
-                        required
-                        isFocused
-                        autoComplete="position_name"
-                    />
+                <div>
+                    <InputLabel htmlFor="position" value="Position" />
+                    {/* <select
+                        name="unit_id"
+                        onChange={(e) => setData("unit_id", e.target.value)}
+                    >
+                        {units.map((unit) => (
+                            <option key={unit.id} value={unit.id}>
+                                {unit.unit_name}
+                            </option>
+                        ))}
+                    </select> */}
 
                     <InputError className="mt-2" message={errors.name} />
-                </div> */}
+                </div>
 
                 <div>
                     <InputLabel htmlFor="join_date" value="Join Date" />
